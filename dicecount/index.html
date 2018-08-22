@@ -38,19 +38,6 @@ function recordRoll(diceValue) {
    if(diceValue == 4) { 
       fieldPM_total += 1;
    }
-//   if(diceValue == 5) { 
-//      fieldPM_total -= 1;
-//  }
-//   if(diceValue == 6) { 
-//      fieldPM_total -= 1;
-//   }
-   if(diceValue == 7) { 
-//      fieldPM_total -= 1;
-      sevenPM_total += 1;
-   }
-//   if(diceValue == 8) { 
-//      fieldPM_total -= 1;
-//   }
    if(diceValue == 9) { 
       fieldPM_total += 1;
    }
@@ -64,14 +51,41 @@ function recordRoll(diceValue) {
       fieldPM_total += 1;
    }
 
+   if(diceValue == 7) { 
+      sevenPM_total += 1;
+   }
+
    displayCurrentValues();
+}
+
+function getLastX(number) {
+   if (rollValues.length < number) {
+      startIndex = 0;
+      stopIndex = rollValues.length;
+   } else {
+      startIndex = rollValues.length - number;
+      stopIndex = number + startIndex;
+   }
+
+   lastX = "";
+   for (i=startIndex; i<stopIndex; i++) {
+      lastX += rollValues[i] + ", ";
+   }
+   return lastX;
 }
 
 function displayCurrentValues() {
    fieldPM_expected = Math.round(rollValues.length * (4/9) * 100) / 100;
    sevenPM_expected = Math.round(rollValues.length * (1/6) * 100) / 100;
 
+   // last X
+   lastTen = getLastX(10);
+   numberForX = document.getElementById('lastX').value;
+   lastEighteen = getLastX(parseInt(numberForX));
+
    document.getElementById('totalRolls').innerHTML = rollValues.length;
+   document.getElementById('lastTen').innerHTML = lastTen;
+   document.getElementById('lastEighteen').innerHTML = lastEighteen;
 
    document.getElementById('fieldPM_total').innerHTML = fieldPM_total;
 //   document.getElementById('fieldPM_lastX').innerHTML = fieldPM_lastX;
@@ -86,6 +100,10 @@ function displayCurrentValues() {
 </body>
 
 Total Rolls: <b id="totalRolls"></b>
+<p>
+Last 10 Rolls: <b id="lastTen"></b>
+<p>
+Last <input id="lastX" type="text" size="3" value="18"> Rolls: <b id="lastEighteen"></b>
 <p>
 Record Roll: 
 <p>
