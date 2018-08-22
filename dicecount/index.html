@@ -71,6 +71,8 @@ function displayCurrentValues() {
    fieldPM_expected = Math.round(rollValues.length * (4/9) * 100) / 100;
    sevenPM_expected = Math.round(rollValues.length * (1/6) * 100) / 100;
 
+   document.getElementById('totalRolls').innerHTML = rollValues.length;
+
    document.getElementById('fieldPM_total').innerHTML = fieldPM_total;
 //   document.getElementById('fieldPM_lastX').innerHTML = fieldPM_lastX;
    document.getElementById('fieldPM_expected').innerHTML = fieldPM_expected;
@@ -83,7 +85,7 @@ function displayCurrentValues() {
 </script>
 </body>
 
-Total Rolls:
+Total Rolls: <b id="totalRolls"></b>
 <p>
 Record Roll: 
 <p>
