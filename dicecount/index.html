@@ -1,4 +1,120 @@
 <html>
-Hello World
+<body>
+<script>
+
+var rollValues = [];
+
+var sevenPM_total = 0;
+var sevenPM_lastX = 0;
+var sevenPM_expected = 0;
+
+var fieldPM_total = 0;
+var fieldPM_lastX = 0;
+var fieldPM_expected = 0;
+
+function clearDiceValues() {
+  rollValues=[];
+  
+  sevenPM_total = 0;
+  sevenPM_lastX = 0;
+  sevenPM_expected = 0;
+
+  fieldPM_total = 0;
+  fieldPM_lastX = 0;
+  fieldPM_expected = 0;
+
+  displayCurrentValues();
+}
+
+function recordRoll(diceValue) {
+   rollValues.push(diceValue);
+
+   if(diceValue == 2) { 
+      fieldPM_total += 1;
+   }
+   if(diceValue == 3) { 
+      fieldPM_total += 1;
+   }
+   if(diceValue == 4) { 
+      fieldPM_total += 1;
+   }
+//   if(diceValue == 5) { 
+//      fieldPM_total -= 1;
+//  }
+//   if(diceValue == 6) { 
+//      fieldPM_total -= 1;
+//   }
+   if(diceValue == 7) { 
+//      fieldPM_total -= 1;
+      sevenPM_total += 1;
+   }
+//   if(diceValue == 8) { 
+//      fieldPM_total -= 1;
+//   }
+   if(diceValue == 9) { 
+      fieldPM_total += 1;
+   }
+   if(diceValue == 10) { 
+      fieldPM_total += 1;
+   }
+   if(diceValue == 11) { 
+      fieldPM_total += 1;
+   }
+   if(diceValue == 12) { 
+      fieldPM_total += 1;
+   }
+
+   displayCurrentValues();
+}
+
+function displayCurrentValues() {
+   fieldPM_expected = Math.round(rollValues.length * (4/9) * 100) / 100;
+   sevenPM_expected = Math.round(rollValues.length * (1/6) * 100) / 100;
+
+   document.getElementById('fieldPM_total').innerHTML = fieldPM_total;
+//   document.getElementById('fieldPM_lastX').innerHTML = fieldPM_lastX;
+   document.getElementById('fieldPM_expected').innerHTML = fieldPM_expected;
+
+   document.getElementById('sevenPM_total').innerHTML = sevenPM_total;
+//   document.getElementById('sevenPM_lastX').innerHTML = sevenPM_lastX;
+   document.getElementById('sevenPM_expected').innerHTML = sevenPM_expected;
+}
+
+</script>
+</body>
+
+Total Rolls:
+<p>
+Record Roll: 
+<button onclick="recordRoll(2)" type="button">2</button>
+<button onclick="recordRoll(3)" type="button">3</button>
+<button onclick="recordRoll(4)" type="button">4</button>
+<button onclick="recordRoll(5)" type="button">5</button>
+<button onclick="recordRoll(6)" type="button">6</button>
+<button onclick="recordRoll(7)" type="button">7</button>
+<button onclick="recordRoll(8)" type="button">8</button>
+<button onclick="recordRoll(9)" type="button">9</button>
+<button onclick="recordRoll(10)" type="button">10</button>
+<button onclick="recordRoll(11)" type="button">11</button>
+<button onclient="recordRoll(12)" type="button">12</button>
+<p>
+<table border=1>
+<tr> <th></th> <th>Total</th> <th>Expected</th></tr>
+<tr> <td> Field </td> 
+     <td id="fieldPM_total"> </td> 
+     <td id="fieldPM_expected"> </td> 
+</tr>
+<tr>
+     <td> Seven </td>
+     <td id="sevenPM_total"> </td> 
+     <td id="sevenPM_expected"> </td> 
+</tr>
+</table>
+<p>
+<button onclick="clearDiceValues()" type="button">Clear Values</button>
+<p>
+
+chart
+
 </html>
 
